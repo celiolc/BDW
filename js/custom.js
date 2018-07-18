@@ -96,8 +96,8 @@ $(function() {
     $(function() {
         jQuery(document).ready(function() {
             $('#home').backstretch([
-                "https://github.com/celiolc/BDW/blob/master/images/ibm-watson.jpg",
-                "https://github.com/celiolc/BDW/blob/master/images/ibm-watson.jpg",
+                "https://cdn.rawgit.com/celiolc/BDW/0c5ed972/images/ibm-watson.jpg",
+                "https://cdn.rawgit.com/celiolc/BDW/0c5ed972/images/ibm-watson.jpg",
                 /*"images/ibm-watson.jpg", 
                 "images/ibm-watson.jpg",*/
             ], { duration: 2000, fade: 750 });
