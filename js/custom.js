@@ -98,10 +98,10 @@ $(function() {
             $('#home').backstretch([
                 "https://cdn.rawgit.com/celiolc/BDW/0c5ed972/images/ibm-watson.jpg",
                 "https://cdn.rawgit.com/celiolc/BDW/0c5ed972/images/ibm-watson.jpg",
-                /*"images/ibm-watson.jpg", 
-                "images/ibm-watson.jpg",*/
             ], { duration: 2000, fade: 750 });
         });
     })
 
 });
+/*"images/ibm-watson.jpg", 
+                "images/ibm-watson.jpg",*/
