@@ -7,6 +7,7 @@ $(document).ready(function() {
     $(".chat-header").on("click", function(e) {
         $(".chat-header,.chat-content").addClass("hide");
         $(".chat-closed").removeClass("hide");
+        //clearInterval();
     });
 });
 $(document).ready(function($) {
@@ -44,13 +45,45 @@ function processOK(response) {
     insertChat('Watson', response.botresponse.messageout.output.text);
     insertChat('Results', response.results);
     //chat('Results2: ', response.results.CAT_ID);
-
     $('#id_contextdump').data('convContext', response.botresponse.messageout.context);
+    changechatclsed();
+
+    function changechatclsed() {
+        var timer;
+        timer = setInterval(changing, 300);
+        //$('#home').on("click", function() {
+        $(".chat-header").on("click", function() {
+            clearInterval(timer);
+        });
+    }
+
+    function changing() {
+        var x = document.getElementById("chat-clsed");
+        x.style.backgroundColor = x.style.backgroundColor == "blue" ? "red" : "blue";
+    }
+}
+/*$('#chat-clsed').on("processNotOK", function() {
+    document.getElementById("chat-clsed").style.cssText = 'background-color: red; color: white;'
+    console.log('function actived');
+});
+*/
+function processNotOK() {
+
+}
+//var timer = setInterval(changechatclsed, 3000);
+
+//function changechatclsed() {
+//document.getElementById("chat-clsed").style.cssText = 'background-color: red; color: white;'
+//myStopFunction();
+//} //document.getElementsByClassName("chat-closed").style.cssText = 'background-color: red; color: white;'
+//--alert("New message arrived");
+insertChat('Erro', 'Erro de acesso ao tentar se comunicar com o bot, contact o developer. Versao beta');
+changechatclsed();
+//myStopFunction();
+//chat('Erro', 'Erro de acesso ao tentar se comunicar com o bot, contact o developer. Versao beta');
 }
 
-function processNotOK() {
-    chat('Erro', 'Erro de acesso ao tentar se comunicar com o bot, contact o developer. Versao beta');
-}
+
 
 function invokeAjax(message) {
     var contextdata = $('#id_contextdump').data('convContext');
@@ -69,8 +102,8 @@ function invokeAjax(message) {
         type: 'POST',
         url: 'botchat1',
         data: ajaxData,
-        success: processOK,
-        error: processNotOK
+        success: setTimeout(processOK, 3000),
+        error: processNotOK,
     });
 }
 
@@ -171,7 +204,8 @@ function insertChat(who, text, time) {
         control = '<li style="width:100%;">' +
             '<div class="msj-rta macro">' +
             '<div class="text text-r">' +
-            '<p>' + text + '</p>' +
+            '<p>' + text +
+            '</p>' +
             '<p><small>' + date + '</small></p>' +
             '</div>' +
             '<div class="avatar" style="padding:0px 0px 0px 10px !important"><img class="img-circle" style="width:100%;" src="' + you.avatar + '" /></div>' +

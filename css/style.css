@@ -217,16 +217,19 @@ CHAT BOT
                                                     display: flex;
                                                     margin-bottom: 5px;
                                                     margin-left: 3px;
+                                                    --background: transparent;
                                                 }
                                                 
                                                 .msj-rta {
                                                     float: right;
                                                     background: whitesmoke;
+                                                    --background: lightblue;
                                                 }
                                                 
                                                 .msj {
                                                     float: left;
                                                     background: white;
+                                                    --background: lightblue;
                                                 }
                                                 
                                                 .frame {
@@ -251,7 +254,7 @@ CHAT BOT
                                                 body>section>div>div>div>div>div>div>div>div>div:nth-child(2)>span {
                                                     background: whitesmoke;
                                                     --color: black;
-                                                    padding: 10px;
+                                                    padding: 5px;
                                                     font-size: 21px;
                                                     border-radius: 50%;
                                                 }
@@ -259,7 +262,7 @@ CHAT BOT
                                                 #gly {
                                                     background: whitesmoke;
                                                     color: black;
-                                                    padding: 10px;
+                                                    padding: 5px;
                                                     font-size: 21px;
                                                     border-radius: 50%;
                                                 }
