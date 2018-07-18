@@ -78,7 +78,6 @@ function processNotOK() {
     //} //document.getElementsByClassName("chat-closed").style.cssText = 'background-color: red; color: white;'
     //--alert("New message arrived");
     insertChat('Erro', 'Erro de acesso ao tentar se comunicar com o bot, contact o developer. Versao beta');
-    changechatclsed();
     //myStopFunction();
     //chat('Erro', 'Erro de acesso ao tentar se comunicar com o bot, contact o developer. Versao beta');
 }
@@ -102,7 +101,8 @@ function invokeAjax(message) {
         type: 'POST',
         url: 'botchat1',
         data: ajaxData,
-        success: setTimeout(processOK, 3000),
+        //success: setTimeout(processOK, 3000),
+        success: processOK,
         error: processNotOK,
     });
 }
