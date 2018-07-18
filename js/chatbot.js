@@ -69,18 +69,18 @@ function processOK(response) {
 */
 function processNotOK() {
 
-}
-//var timer = setInterval(changechatclsed, 3000);
 
-//function changechatclsed() {
-//document.getElementById("chat-clsed").style.cssText = 'background-color: red; color: white;'
-//myStopFunction();
-//} //document.getElementsByClassName("chat-closed").style.cssText = 'background-color: red; color: white;'
-//--alert("New message arrived");
-insertChat('Erro', 'Erro de acesso ao tentar se comunicar com o bot, contact o developer. Versao beta');
-changechatclsed();
-//myStopFunction();
-//chat('Erro', 'Erro de acesso ao tentar se comunicar com o bot, contact o developer. Versao beta');
+    //var timer = setInterval(changechatclsed, 3000);
+
+    //function changechatclsed() {
+    //document.getElementById("chat-clsed").style.cssText = 'background-color: red; color: white;'
+    //myStopFunction();
+    //} //document.getElementsByClassName("chat-closed").style.cssText = 'background-color: red; color: white;'
+    //--alert("New message arrived");
+    insertChat('Erro', 'Erro de acesso ao tentar se comunicar com o bot, contact o developer. Versao beta');
+    changechatclsed();
+    //myStopFunction();
+    //chat('Erro', 'Erro de acesso ao tentar se comunicar com o bot, contact o developer. Versao beta');
 }
 
 
