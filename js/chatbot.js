@@ -16,7 +16,7 @@ $(document).ready(function($) {
     javascriptCheck();
     $('#id_contextdump').hide();
     enterbutton();
-    invokeAjax("Hello");
+    invokeAjax("first_message");
 });
 
 /*
@@ -355,8 +355,5 @@ $('#checkbox').on("click", function() {
     }
 });
 //});
-
-
-
 
 //End of Audio capture
