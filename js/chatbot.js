@@ -2,12 +2,14 @@ $(document).ready(function() {
     $(".chat-closed").on("mouseover", function(e) {
         $(".chat-header,.chat-content").removeClass("hide");
         $(this).addClass("hide");
+        document.getElementById("chat-btn").style.cssText = 'display: none;'
     });
 
-    $(".chat-header").on("click", function(e) {
+    $(".close").on("click", function(e) {
         $(".chat-header,.chat-content").addClass("hide");
         $(".chat-closed").removeClass("hide");
-        //clearInterval();
+        document.getElementById("chat-btn").style.cssText = 'display: block;'
+            //clearInterval();
     });
 });
 $(document).ready(function($) {
@@ -16,6 +18,31 @@ $(document).ready(function($) {
     enterbutton();
     invokeAjax("Hello");
 });
+
+/*
+//Display header with intermitent alert that the user has a new message
+$(document).ready(function() {
+    var timer;
+    timer = setInterval(changingColor, 300);
+    //$('#home').on("click", function() {
+    $(".chat-closed").on("mouseover", function() {
+        clearInterval(timer);
+        //document.getElementById("chat-clsed").style.cssText = 'background: #0177ae;'
+        //document.getElementById("chat-btn").style.cssText = 'display: none;'
+        //document.getElementById("chat-btn").style.cssText = 'background: #0177ae;'
+        //document.getElementById("chat-clsed").style.cssText = 'background: rgb(40, 40, 82);'
+    });
+});
+
+function changingColor() {
+    //var x = document.getElementById("chat-clsed");
+    var y = document.getElementById("chat-btn").style.cssText = "backgroundColor == '#282852' ? 'white' : '#282852';"
+        //x.style.backgroundColor = x.style.backgroundColor == 'black' ? 'white' : 'black';
+        //y.style.backgroundColor = y.style.backgroundColor == '#282852' ? 'white' : '#282852';
+
+    //x.style.color = x.style.color = 'white';
+}
+*/
 
 // if javascript is enabled on the browser then can
 // remove the warning message
@@ -46,21 +73,7 @@ function processOK(response) {
     insertChat('Results', response.results);
     //chat('Results2: ', response.results.CAT_ID);
     $('#id_contextdump').data('convContext', response.botresponse.messageout.context);
-    changechatclsed();
 
-    function changechatclsed() {
-        var timer;
-        timer = setInterval(changing, 300);
-        //$('#home').on("click", function() {
-        $(".chat-header").on("click", function() {
-            clearInterval(timer);
-        });
-    }
-
-    function changing() {
-        var x = document.getElementById("chat-clsed");
-        x.style.backgroundColor = x.style.backgroundColor == "blue" ? "red" : "blue";
-    }
 }
 /*$('#chat-clsed').on("processNotOK", function() {
     document.getElementById("chat-clsed").style.cssText = 'background-color: red; color: white;'
@@ -271,22 +284,45 @@ $('#gly').on("click", function() {
 });
 
 //Audio capture
-var socketaddy = "wss://" + window.location.host + "/ws/audio";
-$(document).ready(function() {
+//var socketaddy = "wss://" + window.location.host + "/ws/audio";
+//$(document).ready(function() {
 
-    //If users click on Off button, Voice is disconnected
-    $('#button2').on("click", function() {
-        document.getElementById('button2').style.cssText = 'background-color: red; color: white;'
-        document.getElementById('button').style.cssText = ''
+
+
+
+//var isON = document.getElementById('box').style.cssText = 'background-color: green; color: white;'
+//If users click on Off button, Voice is disconnected
+$('#checkbox').on("click", function() {
+    var socketaddy = "wss://" + window.location.host + "/ws/audio";
+    var isChecked = document.getElementById("checkbox").checked;
+
+    if (!isChecked) {
+        console.log("Input is NOT checked and Voice  is disabled");
         sock.close();
-        console.log("Voice audio was clicked and disabled.");
-    });
-    //If users click on Off button, Voice is connected
-    $('#button').on("click", function() {
-        document.getElementById('button').style.cssText = 'background-color: blue; color: white;'
-        document.getElementById('button2').style.cssText = ''
-        console.log("Voice audio was clicked and enabled.");
 
+    } else {
+        console.log("Input is checked and Voice is now  enabled");
+
+        //var isOff = document.getElementById('box').style.cssText = 'background-color: red; color: white;'
+        //var isON = document.getElementById('box').style.cssText = 'background-color: green; color: white;'
+        //var isOn =  document.getElementById('box'); //.style.cssText = 'background-color: red; color: white;'
+        //if (isOn==)
+        //document.getElementById('button').style.cssText = ''
+        //sock.close();
+        //console.log("Voice audio was clicked and disabled.");
+
+        /*$('#button2').on("click", function() {
+        //document.getElementById('button2').style.cssText = 'background-color: red; color: white;'
+        //document.getElementById('button').style.cssText = ''
+        sock.close();
+        console.log("Voice audio was clicked and disabled.");*/
+
+        //If users click on Off button, Voice is connected
+        /* $('#button').on("click", function() {
+            document.getElementById('button').style.cssText = 'background-color: blue; color: white;'
+            document.getElementById('button2').style.cssText = ''
+            console.log("Voice audio was clicked and enabled.");
+*/
         var output = document.getElementById('output')
         $('#output').on('playing', function() {
             $('#text').text('Playing audio.')
@@ -315,9 +351,10 @@ $(document).ready(function() {
             output.src = window.URL.createObjectURL(evt.data);
             output.play();
         };
-    });
-
+        //});
+    }
 });
+//});
 
 
 

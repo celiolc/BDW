@@ -89,14 +89,45 @@ CHAT BOT
                                                     opacity: 0.9;
                                                     right: 10px;
                                                     bottom: 0;
-                                                    box-shadow: 0 0 0.1em #000;
-                                                    border-radius: 5px;
+                                                    --box-shadow: 0 0 0.1em #000;
+                                                    --border-radius: 5px;
+                                                }
+                                                
+                                                #chat-btn {
+                                                    width: 80px;
+                                                    height: 55px;
+                                                    --background-color: #62cfc1;
+                                                    background-color: #0177ae;
+                                                    border-radius: 10px;
+                                                    position: relative;
+                                                    --margin-top: -30px;
+                                                    margin-bottom: 20px;
+                                                    text-align: center;
+                                                    box-shadow: 10px;
+                                                }
+                                                
+                                                #chat-btn:after {
+                                                    content: "";
+                                                    display: block;
+                                                    position: absolute;
+                                                    width: 0;
+                                                    height: 0;
+                                                    right: 10px;
+                                                    bottom: -40px;
+                                                    border-left: 10px solid transparent;
+                                                    border-right: 2px solid transparent;
+                                                    --border-top: 10px solid #62CFC1;
+                                                    border-top: 10px solid #0177ae;
+                                                    margin-left: -15px;
+                                                    margin-bottom: 30px;
+                                                    text-align: center;
                                                 }
                                                 
                                                 .chat-closed {
                                                     width: 340px;
                                                     height: 35px;
-                                                    background: rgb(40, 40, 82);
+                                                    background: #0177ae;
+                                                    --background: rgb(40, 40, 82);
                                                     color: white;
                                                     line-height: 35px;
                                                     font-family: 'Roboto', sans-serif;
@@ -111,7 +142,8 @@ CHAT BOT
                                                     border-top-right-radius: 5px;
                                                     width: 340px;
                                                     height: flex;
-                                                    background: rgb(40, 40, 82);
+                                                    background: #0177ae;
+                                                    --background: rgb(40, 40, 82);
                                                     color: white;
                                                     line-height: 43px;
                                                     text-align: center;
@@ -128,10 +160,73 @@ CHAT BOT
                                                     overflow-y: auto;
                                                     word-wrap: break-word;
                                                 }
+                                                /*Switc Togger to play audio ON*/
                                                 
-                                                .box {
-                                                    width: 10px;
-                                                    height: 10px;
+                                                .switch {
+                                                    position: relative;
+                                                    display: inline-block;
+                                                    width: 60px;
+                                                    height: 34px;
+                                                    --padding-bottom: 5px;
+                                                    margin-top: 4px;
+                                                    float: left;
+                                                    position: relative;
+                                                }
+                                                
+                                                .switch input {
+                                                    display: none;
+                                                }
+                                                
+                                                .slider {
+                                                    position: absolute;
+                                                    cursor: pointer;
+                                                    top: 0;
+                                                    left: 0;
+                                                    right: 0;
+                                                    bottom: 0;
+                                                    background-color: #ccc;
+                                                    -webkit-transition: .4s;
+                                                    transition: .4s;
+                                                }
+                                                
+                                                .slider:before {
+                                                    position: absolute;
+                                                    content: "";
+                                                    height: 26px;
+                                                    width: 26px;
+                                                    left: 4px;
+                                                    bottom: 4px;
+                                                    background-color: white;
+                                                    -webkit-transition: .4s;
+                                                    transition: .4s;
+                                                }
+                                                
+                                                input:checked+.slider {
+                                                    background-color: #2196F3;
+                                                }
+                                                
+                                                input:focus+.slider {
+                                                    box-shadow: 0 0 1px #2196F3;
+                                                }
+                                                
+                                                input:checked+.slider:before {
+                                                    -webkit-transform: translateX(26px);
+                                                    -ms-transform: translateX(26px);
+                                                    transform: translateX(26px);
+                                                }
+                                                /* Rounded sliders */
+                                                
+                                                .slider.round {
+                                                    border-radius: 34px;
+                                                }
+                                                
+                                                .slider.round:before {
+                                                    border-radius: 50%;
+                                                }
+                                                /* End of Switc Togger to play audio ON*/
+                                                /* .box {
+                                                    width: 25px;
+                                                    height: 25px;
                                                     background: green;
                                                     float: left;
                                                     position: relative;
@@ -139,7 +234,17 @@ CHAT BOT
                                                     left: 10px;
                                                     border: 1px solid green;
                                                     border-radius: 5px;
-                                                    margin-bottom: 10px;
+                                                    margin-bottom: 11px;
+                                                    --margin-top: -7px;
+                                                }
+                                                */
+                                                
+                                                .close {
+                                                    float: right;
+                                                    font-size: 50px;
+                                                    color: red;
+                                                    margin-top: -7px;
+                                                    margin-right: 7px;
                                                 }
                                                 
                                                 .hide {
@@ -162,7 +267,7 @@ CHAT BOT
                                                     color: rgb(3, 3, 85);
                                                     border: 0;
                                                     padding: 10px;
-                                                    background: whitesmoke;
+                                                    --background: whitesmoke;
                                                 }
                                                 
                                                 .text {
@@ -242,6 +347,7 @@ CHAT BOT
                                                     margin-bottom: 0;
                                                     margin-left: 0;
                                                     box-align: var(--margin-left);
+                                                    opacity: 0.9;
                                                 }
                                                 
                                                 .frame>div:last-of-type {
