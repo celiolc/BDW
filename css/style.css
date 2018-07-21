@@ -1016,13 +1016,13 @@ media quires for mobile
                                                         position: relative;
                                                         --background: #CBCBC8;
                                                         background: rgb(57, 45, 163);
-                                                        width: 328px;
-                                                        height: 480px;
+                                                        width: 318px;
+                                                        height: 420px;
                                                         --overflow: hidden;
                                                         overflow: visible;
                                                         padding: 0;
                                                         margin-bottom: 0;
-                                                        margin-left: 10px;
+                                                        margin-left: 20px;
                                                         box-align: var(--margin-left);
                                                         opacity: 1;
                                                     }
