@@ -170,7 +170,6 @@ CHAT BOT
                                                     --padding-bottom: 5px;
                                                     margin-top: 4px;
                                                     float: left;
-                                                    position: relative;
                                                 }
                                                 
                                                 .switch input {
@@ -1012,5 +1011,25 @@ media quires for mobile
                                                     }
                                                     #home h3 {
                                                         font-size: 12px;
+                                                    }
+                                                    .frame {
+                                                        position: relative;
+                                                        --background: #CBCBC8;
+                                                        background: rgb(57, 45, 163);
+                                                        width: 328px;
+                                                        height: 480px;
+                                                        --overflow: hidden;
+                                                        overflow: visible;
+                                                        padding: 0;
+                                                        margin-bottom: 0;
+                                                        margin-left: 10px;
+                                                        box-align: var(--margin-left);
+                                                        opacity: 1;
+                                                    }
+                                                    .frame>div:last-of-type {
+                                                        position: absolute;
+                                                        bottom: 0;
+                                                        width: 100%;
+                                                        display: flex;
                                                     }
                                                 }

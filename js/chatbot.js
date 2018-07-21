@@ -3,13 +3,15 @@ $(document).ready(function() {
         $(".chat-header,.chat-content").removeClass("hide");
         $(this).addClass("hide");
         document.getElementById("chat-btn").style.cssText = 'display: none;'
+
     });
 
     $(".close").on("click", function(e) {
         $(".chat-header,.chat-content").addClass("hide");
         $(".chat-closed").removeClass("hide");
         document.getElementById("chat-btn").style.cssText = 'display: block;'
-            //clearInterval();
+        returnCSS();
+        //clearInterval();
     });
 });
 $(document).ready(function($) {
@@ -357,3 +359,54 @@ $('#checkbox').on("click", function() {
 //});
 
 //End of Audio capture
+
+$(".chat-closed").on("mouseover", function() {
+    changeMedia(x);
+});
+
+function changeMedia(x) {
+    if (!x.matches) { // If media query doesn't matches
+
+        console.log('changeMedia called for media more than 440');
+    } else {
+
+        document.getElementById("about").style.color = "transparent";
+        document.getElementById("contact").style.color = "transparent";
+        document.getElementById("about").style.display = "none";
+        document.getElementById("contact").style.display = "none";
+        document.getElementById("glob").style.color = "transparent";
+        document.getElementById("wht").style.color = "transparent";
+        document.getElementById("brief").style.color = "transparent";
+        document.getElementById("look").style.color = "transparent";
+        document.getElementById("p").style.color = "transparent";
+        document.getElementById("gtouch").style.color = "transparent";
+        document.getElementById("missing").style.color = "transparent";
+        document.getElementById("name").style.display = "none";
+        document.getElementById("email").style.display = "none";
+        document.getElementById("message").style.display = "none";
+        document.getElementById("send").style.display = "none";
+        document.getElementById("rights").style.display = "none";
+    }
+}
+
+var x = window.matchMedia("(max-width: 440px)")
+x.addListener(changeMedia) // Attach listener function on state changes
+
+function returnCSS() {
+    document.getElementById("about").style.color = "";
+    document.getElementById("contact").style.color = "";
+    document.getElementById("about").style.display = "";
+    document.getElementById("contact").style.display = "";
+    document.getElementById("glob").style.color = "";
+    document.getElementById("wht").style.color = "";
+    document.getElementById("brief").style.color = "";
+    document.getElementById("look").style.color = "";
+    document.getElementById("p").style.color = "";
+    document.getElementById("gtouch").style.color = "";
+    document.getElementById("missing").style.color = "";
+    document.getElementById("name").style.display = "";
+    document.getElementById("email").style.display = "";
+    document.getElementById("message").style.display = "";
+    document.getElementById("send").style.display = "";
+    document.getElementById("rights").style.display = "";
+}
