@@ -369,7 +369,8 @@ function changeMedia(x) {
 
         console.log('changeMedia called for media more than 440');
     } else {
-
+        document.getElementById("menu1").style.display = "none";
+        document.getElementById("menu2").style.display = "none";
         document.getElementById("about").style.color = "transparent";
         document.getElementById("contact").style.color = "transparent";
         document.getElementById("about").style.display = "none";
@@ -386,6 +387,7 @@ function changeMedia(x) {
         document.getElementById("message").style.display = "none";
         document.getElementById("send").style.display = "none";
         document.getElementById("rights").style.display = "none";
+
     }
 }
 
@@ -393,6 +395,8 @@ var x = window.matchMedia("(max-width: 440px)")
 x.addListener(changeMedia) // Attach listener function on state changes
 
 function returnCSS() {
+    document.getElementById("menu1").style.display = "";
+    document.getElementById("menu2").style.display = "";
     document.getElementById("about").style.color = "";
     document.getElementById("contact").style.color = "";
     document.getElementById("about").style.display = "";
