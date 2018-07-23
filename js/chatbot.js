@@ -1,16 +1,18 @@
+//When User mouseOver in ChatBot button, It's opened.
 $(document).ready(function() {
     $(".chat-closed").on("mouseover", function(e) {
         $(".chat-header,.chat-content").removeClass("hide");
         $(this).addClass("hide");
         document.getElementById("chat-btn").style.cssText = 'display: none;'
+        changeMedia(x); //Function called to check if it's Smart screen, If yes it's going to hide elements on the page when user clicks on ChatBot
 
     });
-
+    //When User Press Close(X), The chat is closed.
     $(".close").on("click", function(e) {
         $(".chat-header,.chat-content").addClass("hide");
         $(".chat-closed").removeClass("hide");
         document.getElementById("chat-btn").style.cssText = 'display: block;'
-        returnCSS();
+        returnCSS(); //Function called to return CSS styles as before for Smartphones
         //clearInterval();
     });
 });
@@ -20,31 +22,6 @@ $(document).ready(function($) {
     enterbutton();
     invokeAjax("first_message");
 });
-
-/*
-//Display header with intermitent alert that the user has a new message
-$(document).ready(function() {
-    var timer;
-    timer = setInterval(changingColor, 300);
-    //$('#home').on("click", function() {
-    $(".chat-closed").on("mouseover", function() {
-        clearInterval(timer);
-        //document.getElementById("chat-clsed").style.cssText = 'background: #0177ae;'
-        //document.getElementById("chat-btn").style.cssText = 'display: none;'
-        //document.getElementById("chat-btn").style.cssText = 'background: #0177ae;'
-        //document.getElementById("chat-clsed").style.cssText = 'background: rgb(40, 40, 82);'
-    });
-});
-
-function changingColor() {
-    //var x = document.getElementById("chat-clsed");
-    var y = document.getElementById("chat-btn").style.cssText = "backgroundColor == '#282852' ? 'white' : '#282852';"
-        //x.style.backgroundColor = x.style.backgroundColor == 'black' ? 'white' : 'black';
-        //y.style.backgroundColor = y.style.backgroundColor == '#282852' ? 'white' : '#282852';
-
-    //x.style.color = x.style.color = 'white';
-}
-*/
 
 // if javascript is enabled on the browser then can
 // remove the warning message
@@ -77,24 +54,10 @@ function processOK(response) {
     $('#id_contextdump').data('convContext', response.botresponse.messageout.context);
 
 }
-/*$('#chat-clsed').on("processNotOK", function() {
-    document.getElementById("chat-clsed").style.cssText = 'background-color: red; color: white;'
-    console.log('function actived');
-});
-*/
+
 function processNotOK() {
-
-
-    //var timer = setInterval(changechatclsed, 3000);
-
-    //function changechatclsed() {
-    //document.getElementById("chat-clsed").style.cssText = 'background-color: red; color: white;'
-    //myStopFunction();
-    //} //document.getElementsByClassName("chat-closed").style.cssText = 'background-color: red; color: white;'
-    //--alert("New message arrived");
     insertChat('Erro', 'Erro de acesso ao tentar se comunicar com o bot, contact o developer. Versao beta');
-    //myStopFunction();
-    //chat('Erro', 'Erro de acesso ao tentar se comunicar com o bot, contact o developer. Versao beta');
+
 }
 
 
@@ -237,16 +200,11 @@ function insertChat(who, text, time) {
 
 
 $(".mytext").on("keyup", function(e) {
-
     if ((e.keyCode || e.which) == 13) {
-
         var text = $(this).val();
-
         if (text !== "") {
-
             insertChat("me", text);
             //invokeAjax(text);
-
             $(this).val('');
 
         }
@@ -285,15 +243,8 @@ $('#gly').on("click", function() {
     }
 });
 
-//Audio capture
-//var socketaddy = "wss://" + window.location.host + "/ws/audio";
-//$(document).ready(function() {
+//Function/code created to Text to Speech 'Audio capture'
 
-
-
-
-//var isON = document.getElementById('box').style.cssText = 'background-color: green; color: white;'
-//If users click on Off button, Voice is disconnected
 $('#checkbox').on("click", function() {
     var socketaddy = "wss://" + window.location.host + "/ws/audio";
     var isChecked = document.getElementById("checkbox").checked;
@@ -304,27 +255,6 @@ $('#checkbox').on("click", function() {
 
     } else {
         console.log("Input is checked and Voice is now  enabled");
-
-        //var isOff = document.getElementById('box').style.cssText = 'background-color: red; color: white;'
-        //var isON = document.getElementById('box').style.cssText = 'background-color: green; color: white;'
-        //var isOn =  document.getElementById('box'); //.style.cssText = 'background-color: red; color: white;'
-        //if (isOn==)
-        //document.getElementById('button').style.cssText = ''
-        //sock.close();
-        //console.log("Voice audio was clicked and disabled.");
-
-        /*$('#button2').on("click", function() {
-        //document.getElementById('button2').style.cssText = 'background-color: red; color: white;'
-        //document.getElementById('button').style.cssText = ''
-        sock.close();
-        console.log("Voice audio was clicked and disabled.");*/
-
-        //If users click on Off button, Voice is connected
-        /* $('#button').on("click", function() {
-            document.getElementById('button').style.cssText = 'background-color: blue; color: white;'
-            document.getElementById('button2').style.cssText = ''
-            console.log("Voice audio was clicked and enabled.");
-*/
         var output = document.getElementById('output')
         $('#output').on('playing', function() {
             $('#text').text('Playing audio.')
@@ -360,10 +290,12 @@ $('#checkbox').on("click", function() {
 
 //End of Audio capture
 
-$(".chat-closed").on("mouseover", function() {
-    changeMedia(x);
-});
+//Function created to hide the content when user press Chatbot button on Smartphones.
+//$(".chat-closed").on("mouseover", function() {
+//changeMedia(x);
+//});
 
+//Function created to hide the content when user press Chatbot button on Smartphones.
 function changeMedia(x) {
     if (!x.matches) { // If media query doesn't matches
 
@@ -394,6 +326,7 @@ function changeMedia(x) {
 var x = window.matchMedia("(max-width: 440px)")
 x.addListener(changeMedia) // Attach listener function on state changes
 
+//Function called to check if it's Smart screen, If yes it's going to hide elements on the page when user clicks on ChatBot
 function returnCSS() {
     document.getElementById("menu1").style.display = "";
     document.getElementById("menu2").style.display = "";
