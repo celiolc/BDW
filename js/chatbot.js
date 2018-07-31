@@ -477,3 +477,4 @@ $('#checkbox').on("click", function() {
                     document.getElementById("rights").style.display = "";
                 }
             }
+        }
