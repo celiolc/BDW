@@ -290,191 +290,191 @@ $('#checkbox').on("click", function() {
 
 //Function/code created to Speech To Text 'Voice/Mic capture and recording'
 $('#checkbox').on("click", function() {
-            var isChecked = document.getElementById("checkbox").checked;
-            if (!isChecked) {
-                console.log("Input is NOT checked and Voice/Mic  is disabled");
-                ws.close();
-                mediaRecorder.stop();
-            } else {
-                console.log("Input is checked and Voice/Mic is now  enabled");
-                enableMic();
-                var token = "{{payload}}";
-                var model = "en-US_BroadbandModel"; // Change to your own model
-                var wsURI = 'wss://stream.watsonplatform.net/speech-to-text/api/v1/recognize?watson-token=' +
-                    token + '&model=' + model;
-                var message = {
-                    'action': 'start',
-                    'content-type': 'audio/ogg',
-                    'continuous': true,
-                    'interim_results': true,
-                    // 'inactivity_timeout': 6000,
-                    'word_confidence': false,
-                    'timestamps': true,
-                    'max_alternatives': 0,
-                    'keywords': ['imposible', 'unavailable'],
-                    'keywords_threshold': 0.8,
-                    'speaker_labels': true
-                };
-                var message2 = { 'action': 'stop' };
-                var index = 0;
-                var ws = new WebSocket(wsURI);
-                ws.onopen = function(evt) { onOpen(evt) };
-                ws.onmessage = function(evt) { onMessage(evt) };
-                ws.onclose = function(evt) { onClose(evt) };
-                ws.onerror = function(evt) { onError(evt) };
+    var isChecked = document.getElementById("checkbox").checked;
+    if (!isChecked) {
+        console.log("Input is NOT checked and Voice/Mic  is disabled");
+        ws.close();
+        mediaRecorder.stop();
+    } else {
+        console.log("Input is checked and Voice/Mic is now  enabled");
+        enableMic();
+        var token = "{{payload}}";
+        var model = "en-US_BroadbandModel"; // Change to your own model
+        var wsURI = 'wss://stream.watsonplatform.net/speech-to-text/api/v1/recognize?watson-token=' +
+            token + '&model=' + model;
+        var message = {
+            'action': 'start',
+            'content-type': 'audio/ogg',
+            'continuous': true,
+            'interim_results': true,
+            // 'inactivity_timeout': 6000,
+            'word_confidence': false,
+            'timestamps': true,
+            'max_alternatives': 0,
+            'keywords': ['imposible', 'unavailable'],
+            'keywords_threshold': 0.8,
+            'speaker_labels': true
+        };
+        var message2 = { 'action': 'stop' };
+        var index = 0;
+        var ws = new WebSocket(wsURI);
+        ws.onopen = function(evt) { onOpen(evt) };
+        ws.onmessage = function(evt) { onMessage(evt) };
+        ws.onclose = function(evt) { onClose(evt) };
+        ws.onerror = function(evt) { onError(evt) };
 
 
-                //function that is going to record sound 
-                function enableMic() {
-                    //document.getElementById("startButton").addEventListener("click", function() {
+        //function that is going to record sound 
+        function enableMic() {
+            //document.getElementById("startButton").addEventListener("click", function() {
 
-                    navigator.mediaDevices.getUserMedia({ audio: true })
-                        .then(stream => {
-                            const mediaRecorder = new MediaRecorder(stream);
-                            mediaRecorder.start();
-                            detectSilence(stream, onSilence, onSpeak);
+            navigator.mediaDevices.getUserMedia({ audio: true })
+                .then(stream => {
+                    const mediaRecorder = new MediaRecorder(stream);
+                    mediaRecorder.start();
+                    detectSilence(stream, onSilence, onSpeak);
 
 
-                            const audioChunks = [];
-                            mediaRecorder.addEventListener("dataavailable", event => {
-                                audioChunks.push(event.data);
+                    const audioChunks = [];
+                    mediaRecorder.addEventListener("dataavailable", event => {
+                        audioChunks.push(event.data);
 
-                            });
-                            //document.getElementById("stopButton").addEventListener("click", function() {
-                            //mediaRecorder.stop();
-                            //});
-
-                            mediaRecorder.addEventListener("stop", () => {
-                                const audioBlob = new Blob(audioChunks, { type: 'audio/ogg' });
-                                const audioUrl = URL.createObjectURL(audioBlob);
-                                const audio = new Audio(audioUrl);
-                                var reader = new FileReader();
-                                reader.onload = function() {
-                                    ws.send(reader.result);
-                                };
-                                reader.readAsArrayBuffer(audioBlob);
-                                // convert blob to URL so it can be assigned to a audio src attribute
-                                createAudioElement(URL.createObjectURL(audioBlob));
-
-                                audio.play();
-                                console.log(audioBlob);
-
-                            });
-                        });
+                    });
+                    //document.getElementById("stopButton").addEventListener("click", function() {
+                    //mediaRecorder.stop();
                     //});
-                };
 
-                function onOpen(evt) {
-                    //fileselection();
-                    console.log("onOpen:" + JSON.stringify(message));
-                    ws.send(JSON.stringify(message));
-                };
-
-                function onClose(evt) {
-                    console.log("onClose:" + evt.code + evt.reason);
-                    ws.close();
-                };
-
-                function onMessage(evt) {　
-                    var object = JSON.parse(evt.data);
-                    console.log("onMessage:" + evt.data);
-                    if (evt.data.indexOf("results") >= 1) {
-                        if (object["results"][0]["final"] == true) {
-                            printout(
-                                object["results"][0]["alternatives"][0]["timestamps"][0][2],
-                                object["results"][0]["alternatives"][0]["confidence"],
-                                object["results"][0]["alternatives"][0]["transcript"],
-                                object["result_index"]
-                            );
+                    mediaRecorder.addEventListener("stop", () => {
+                        const audioBlob = new Blob(audioChunks, { type: 'audio/ogg' });
+                        const audioUrl = URL.createObjectURL(audioBlob);
+                        const audio = new Audio(audioUrl);
+                        var reader = new FileReader();
+                        reader.onload = function() {
+                            ws.send(reader.result);
                         };
-                    };
+                        reader.readAsArrayBuffer(audioBlob);
+                        // convert blob to URL so it can be assigned to a audio src attribute
+                        createAudioElement(URL.createObjectURL(audioBlob));
+
+                        audio.play();
+                        console.log(audioBlob);
+
+                    });
+                });
+            //});
+        };
+
+        function onOpen(evt) {
+            //fileselection();
+            console.log("onOpen:" + JSON.stringify(message));
+            ws.send(JSON.stringify(message));
+        };
+
+        function onClose(evt) {
+            console.log("onClose:" + evt.code + evt.reason);
+            ws.close();
+        };
+
+        function onMessage(evt) {　
+            var object = JSON.parse(evt.data);
+            console.log("onMessage:" + evt.data);
+            if (evt.data.indexOf("results") >= 1) {
+                if (object["results"][0]["final"] == true) {
+                    printout(
+                        object["results"][0]["alternatives"][0]["timestamps"][0][2],
+                        object["results"][0]["alternatives"][0]["confidence"],
+                        object["results"][0]["alternatives"][0]["transcript"],
+                        object["result_index"]
+                    );
                 };
+            };
+        };
 
-                function onError(evt) {
-                    console.log("onError:" + evt.data);
-                };
+        function onError(evt) {
+            console.log("onError:" + evt.data);
+        };
 
-                function disconnect() {
-                    ws.send(JSON.stringify(message2));
-                    console.log("disconnect");
-                    ws.close();
-                };
-                // appends an audio element to playback and download recording
-                function createAudioElement(blobUrl) {
-                    const downloadEl = document.createElement('a');
-                    downloadEl.style = 'display: block';
-                    downloadEl.innerHTML = 'download';
-                    downloadEl.download = 'audio.wav';
-                    //downloadEl.download = 'audio.webm';
-                    downloadEl.href = blobUrl;
-                    const audioEl = document.createElement('audio');
-                    audioEl.controls = true;
-                    const sourceEl = document.createElement('source');
-                    sourceEl.src = blobUrl;
-                    sourceEl.type = 'audio/webm';
-                    audioEl.appendChild(sourceEl);
-                    document.body.appendChild(audioEl);
-                    document.body.appendChild(downloadEl);
-                    downloadEl.setAttribute("id", "audio");
-                };
+        function disconnect() {
+            ws.send(JSON.stringify(message2));
+            console.log("disconnect");
+            ws.close();
+        };
+        // appends an audio element to playback and download recording
+        function createAudioElement(blobUrl) {
+            const downloadEl = document.createElement('a');
+            downloadEl.style = 'display: block';
+            downloadEl.innerHTML = 'download';
+            downloadEl.download = 'audio.wav';
+            //downloadEl.download = 'audio.webm';
+            downloadEl.href = blobUrl;
+            const audioEl = document.createElement('audio');
+            audioEl.controls = true;
+            const sourceEl = document.createElement('source');
+            sourceEl.src = blobUrl;
+            sourceEl.type = 'audio/webm';
+            audioEl.appendChild(sourceEl);
+            document.body.appendChild(audioEl);
+            document.body.appendChild(downloadEl);
+            downloadEl.setAttribute("id", "audio");
+        };
 
-                //End of Voice/Mic capture
-                //Function created to hide the content when user press Chatbot button on Smartphones.
-                //$(".chat-closed").on("mouseover", function() {
-                //changeMedia(x);
-                //});
+        //End of Voice/Mic capture
+        //Function created to hide the content when user press Chatbot button on Smartphones.
+        //$(".chat-closed").on("mouseover", function() {
+        //changeMedia(x);
+        //});
 
-                //Function created to hide the content when user press Chatbot button on Smartphones.
-                function changeMedia(x) {
-                    if (!x.matches) { // If media query doesn't matches
+        //Function created to hide the content when user press Chatbot button on Smartphones.
+        function changeMedia(x) {
+            if (!x.matches) { // If media query doesn't matches
 
-                        console.log('changeMedia called for media more than 440');
-                    } else {
-                        document.getElementById("menu1").style.display = "none";
-                        document.getElementById("menu2").style.display = "none";
-                        document.getElementById("about").style.color = "transparent";
-                        document.getElementById("contact").style.color = "transparent";
-                        document.getElementById("about").style.display = "none";
-                        document.getElementById("contact").style.display = "none";
-                        document.getElementById("glob").style.color = "transparent";
-                        document.getElementById("wht").style.color = "transparent";
-                        document.getElementById("brief").style.color = "transparent";
-                        document.getElementById("look").style.color = "transparent";
-                        document.getElementById("p").style.color = "transparent";
-                        document.getElementById("gtouch").style.color = "transparent";
-                        document.getElementById("missing").style.color = "transparent";
-                        document.getElementById("name").style.display = "none";
-                        document.getElementById("email").style.display = "none";
-                        document.getElementById("message").style.display = "none";
-                        document.getElementById("send").style.display = "none";
-                        document.getElementById("rights").style.display = "none";
+                console.log('changeMedia called for media more than 440');
+            } else {
+                document.getElementById("menu1").style.display = "none";
+                document.getElementById("menu2").style.display = "none";
+                document.getElementById("about").style.color = "transparent";
+                document.getElementById("contact").style.color = "transparent";
+                document.getElementById("about").style.display = "none";
+                document.getElementById("contact").style.display = "none";
+                document.getElementById("glob").style.color = "transparent";
+                document.getElementById("wht").style.color = "transparent";
+                document.getElementById("brief").style.color = "transparent";
+                document.getElementById("look").style.color = "transparent";
+                document.getElementById("p").style.color = "transparent";
+                document.getElementById("gtouch").style.color = "transparent";
+                document.getElementById("missing").style.color = "transparent";
+                document.getElementById("name").style.display = "none";
+                document.getElementById("email").style.display = "none";
+                document.getElementById("message").style.display = "none";
+                document.getElementById("send").style.display = "none";
+                document.getElementById("rights").style.display = "none";
 
-                    }
-                }
-
-                var x = window.matchMedia("(max-width: 440px)")
-                x.addListener(changeMedia) // Attach listener function on state changes
-
-                //Function called to check if it's Smart screen, If yes it's going to hide elements on the page when user clicks on ChatBot
-                function returnCSS() {
-                    document.getElementById("menu1").style.display = "";
-                    document.getElementById("menu2").style.display = "";
-                    document.getElementById("about").style.color = "";
-                    document.getElementById("contact").style.color = "";
-                    document.getElementById("about").style.display = "";
-                    document.getElementById("contact").style.display = "";
-                    document.getElementById("glob").style.color = "";
-                    document.getElementById("wht").style.color = "";
-                    document.getElementById("brief").style.color = "";
-                    document.getElementById("look").style.color = "";
-                    document.getElementById("p").style.color = "";
-                    document.getElementById("gtouch").style.color = "";
-                    document.getElementById("missing").style.color = "";
-                    document.getElementById("name").style.display = "";
-                    document.getElementById("email").style.display = "";
-                    document.getElementById("message").style.display = "";
-                    document.getElementById("send").style.display = "";
-                    document.getElementById("rights").style.display = "";
-                }
             }
         }
+
+        var x = window.matchMedia("(max-width: 440px)")
+        x.addListener(changeMedia) // Attach listener function on state changes
+
+        //Function called to check if it's Smart screen, If yes it's going to hide elements on the page when user clicks on ChatBot
+        function returnCSS() {
+            document.getElementById("menu1").style.display = "";
+            document.getElementById("menu2").style.display = "";
+            document.getElementById("about").style.color = "";
+            document.getElementById("contact").style.color = "";
+            document.getElementById("about").style.display = "";
+            document.getElementById("contact").style.display = "";
+            document.getElementById("glob").style.color = "";
+            document.getElementById("wht").style.color = "";
+            document.getElementById("brief").style.color = "";
+            document.getElementById("look").style.color = "";
+            document.getElementById("p").style.color = "";
+            document.getElementById("gtouch").style.color = "";
+            document.getElementById("missing").style.color = "";
+            document.getElementById("name").style.display = "";
+            document.getElementById("email").style.display = "";
+            document.getElementById("message").style.display = "";
+            document.getElementById("send").style.display = "";
+            document.getElementById("rights").style.display = "";
+        }
+    }
+});
