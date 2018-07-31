@@ -289,13 +289,10 @@ $('#checkbox').on("click", function() {
 //End of Audio capture
 
 //Function/code created to Speech To Text 'Voice/Mic capture and recording'
-$('#checkbox').on("click", function() {
-    var isChecked = document.getElementById("checkbox").checked;
-    if (!isChecked) {
-        console.log("Input is NOT checked and Voice/Mic  is disabled");
-        ws.close();
-        mediaRecorder.stop();
-    } else {
+$('#checkbox2').on("click", function() {
+    var isChecked = document.getElementById("checkbox2").checked;
+    if (isChecked) {
+
         console.log("Input is checked and Voice/Mic is now  enabled");
         enableMic();
         var token = "{{payload}}";
@@ -326,6 +323,7 @@ $('#checkbox').on("click", function() {
 
         //function that is going to record sound 
         function enableMic() {
+
             //document.getElementById("startButton").addEventListener("click", function() {
 
             navigator.mediaDevices.getUserMedia({ audio: true })
@@ -340,9 +338,10 @@ $('#checkbox').on("click", function() {
                         audioChunks.push(event.data);
 
                     });
-                    //document.getElementById("stopButton").addEventListener("click", function() {
-                    //mediaRecorder.stop();
-                    //});
+                    $('#checkbox2').on("click", function() {
+                        //document.getElementById("stopButton").addEventListener("click", function() {
+                        mediaRecorder.stop();
+                    });
 
                     mediaRecorder.addEventListener("stop", () => {
                         const audioBlob = new Blob(audioChunks, { type: 'audio/ogg' });
@@ -418,6 +417,10 @@ $('#checkbox').on("click", function() {
             downloadEl.setAttribute("id", "audio");
         };
 
+    } else {
+        console.log("Input is NOT checked and Voice/Mic  is disabled");
+        //ws.close();
+        //mediaRecorder.stop();
         //End of Voice/Mic capture
         //Function created to hide the content when user press Chatbot button on Smartphones.
         //$(".chat-closed").on("mouseover", function() {
