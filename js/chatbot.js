@@ -476,3 +476,4 @@ $('#checkbox').on("click", function() {
                     document.getElementById("send").style.display = "";
                     document.getElementById("rights").style.display = "";
                 }
+            }
