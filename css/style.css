@@ -326,7 +326,9 @@ CHAT BOT
                                                 
                                                 .msj-rta {
                                                     float: right;
-                                                    background: whitesmoke;
+                                                    background: #1079df;
+                                                    color: #fff;
+                                                    /* background: whitesmoke;*/
                                                     --background: lightblue;
                                                 }
                                                 
@@ -813,7 +815,8 @@ home section
                                                 }
                                                 
                                                 #home .btn-danger {
-                                                    background: #0177ae;
+                                                    background: #1079df;
+                                                    /*background: #0177ae;*/
                                                     border-color: transparent;
                                                 }
                                                 
