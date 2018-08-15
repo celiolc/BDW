@@ -326,15 +326,15 @@ CHAT BOT
                                                 
                                                 .msj-rta {
                                                     float: right;
-                                                    background: #1079df;
-                                                    color: #fff;
-                                                    /* background: whitesmoke;*/
+                                                    background: whitesmoke;
                                                     --background: lightblue;
                                                 }
                                                 
                                                 .msj {
                                                     float: left;
-                                                    background: white;
+                                                    background: #1079df;
+                                                    text-decoration-color: #fff;
+                                                    /* background: white;*/
                                                     --background: lightblue;
                                                 }
                                                 
