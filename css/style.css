@@ -333,15 +333,13 @@ CHAT BOT
                                                 .msj {
                                                     float: left;
                                                     background: white;
-                                                    --background: lightblue;
                                                 }
                                                 
                                                 .frame {
                                                     position: relative;
                                                     background: #0177ae;
                                                     /* background: #CBCBC8;*/
-                                                    width: 400px;
-                                                    /*width: 338px;*/
+                                                    width: 338px;
                                                     height: 500px;
                                                     overflow: hidden;
                                                     padding: 0;
