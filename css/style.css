@@ -827,10 +827,11 @@ home section
                                                 /* ==========================================================================
 about section
 ========================================================================== */
-                                                /*#about {
-                                                   background: #3B3B3B;
-                                                   color: #ffffff;
-                                                }*/
+                                                
+                                                #about {
+                                                    background: #3B3B3B;
+                                                    color: #ffffff;
+                                                }
                                                 
                                                 .about-info {
                                                     margin-top: -15px;
@@ -886,8 +887,7 @@ about section
 contact section
 ========================================================================== */
                                                 
-                                                .contact {
-                                                    /*#contact {*/
+                                                #contact {
                                                     background: #3B3B3B url('../images/contact-bg.jpg') no-repeat center center;
                                                     background-size: cover;
                                                     color: #ffffff;
