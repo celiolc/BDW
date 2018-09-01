@@ -96,8 +96,11 @@ $(function() {
     $(function() {
         jQuery(document).ready(function() {
             $('#home').backstretch([
-                "https://cdn.rawgit.com/celiolc/BDW/master/images/background1.jpeg",
-                "https://cdn.rawgit.com/celiolc/BDW/master/images/background1.jpeg",
+                // "images/back6.jpg",
+                //"images/back6.jpg",
+                "https://cdn.rawgit.com/celiolc/BDW/f4d62bf4/images/back6.jpg",
+                "https://cdn.rawgit.com/celiolc/BDW/f4d62bf4/images/back6.jpg",
+
                 // "https://cdn.rawgit.com/celiolc/BDW/0c5ed972/images/ibm-watson.jpg",
                 //"https://cdn.rawgit.com/celiolc/BDW/0c5ed972/images/ibm-watson.jpg",
             ], { duration: 2000, fade: 750 });
