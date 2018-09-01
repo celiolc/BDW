@@ -124,7 +124,7 @@ CHAT BOT
                                                 }
                                                 
                                                 .chat-closed {
-                                                    width: 340px;
+                                                    width: 380px;
                                                     height: 35px;
                                                     background: #0177ae;
                                                     --background: rgb(40, 40, 82);
@@ -140,8 +140,7 @@ CHAT BOT
                                                 .chat-header {
                                                     border-top-left-radius: 5px;
                                                     border-top-right-radius: 5px;
-                                                    width: 340px;
-                                                    height: flex;
+                                                    width: 100%100% height: flex;
                                                     background: #0177ae;
                                                     --background: rgb(40, 40, 82);
                                                     color: white;
@@ -152,7 +151,7 @@ CHAT BOT
                                                 }
                                                 
                                                 .chat-content {
-                                                    width: 340px;
+                                                    width: 100%;
                                                     border-radius: 5px;
                                                     margin-bottom: 10px;
                                                     background: #ffffff;
@@ -264,8 +263,11 @@ CHAT BOT
                                                 
                                                 .mytext {
                                                     color: rgb(3, 3, 85);
+                                                    --text-decoration-color: firebrick;
                                                     border: 0;
                                                     padding: 10px;
+                                                    width: 120%;
+                                                    --height: 46px;
                                                     --background: whitesmoke;
                                                 }
                                                 
@@ -327,7 +329,7 @@ CHAT BOT
                                                 .msj-rta {
                                                     float: right;
                                                     background: whitesmoke;
-                                                    --background: lightblue;
+                                                    box-shadow: 2px 2px 2px 2px #fff;
                                                 }
                                                 
                                                 .msj {
@@ -339,7 +341,7 @@ CHAT BOT
                                                     position: relative;
                                                     background: #0177ae;
                                                     /* background: #CBCBC8;*/
-                                                    width: 338px;
+                                                    width: 380px;
                                                     height: 500px;
                                                     overflow: hidden;
                                                     padding: 0;
@@ -358,18 +360,25 @@ CHAT BOT
                                                 
                                                 body>section>div>div>div>div>div>div>div>div>div:nth-child(2)>span {
                                                     background: whitesmoke;
-                                                    --color: black;
+                                                    --color: red;
                                                     padding: 5px;
-                                                    font-size: 21px;
-                                                    border-radius: 50%;
+                                                    font-size: 41px;
+                                                    border-radius: 10%;
                                                 }
                                                 
                                                 #gly {
-                                                    background: whitesmoke;
-                                                    color: black;
-                                                    padding: 5px;
-                                                    font-size: 21px;
-                                                    border-radius: 50%;
+                                                    --background: whitesmoke;
+                                                    color: #fff;
+                                                    --padding: 2px;
+                                                    font-size: 36px;
+                                                    border-radius: 12%;
+                                                    height: 60px;
+                                                    --position: relative;
+                                                    margin-right: 15px;
+                                                    margin-bottom: -15px;
+                                                    margin-top: 25px;
+                                                    box-shadow: 1px 3px 3px 3px #fff;
+                                                    --box-shadow: 5px 5px 5px 10px #888888;
                                                 }
                                                 
                                                 body>section>div>div>div>div>div>div>div>div>div.msj-rta.macro {
@@ -808,14 +817,17 @@ home section
                                                 }
                                                 
                                                 #home .btn:hover {
-                                                    background: #1079df;
+                                                    -- background: #1079df;
+                                                    background: #0177ae;
                                                     border-color: transparent;
                                                 }
                                                 
                                                 #home .btn-danger {
-                                                    background: #1079df;
+                                                    --background: #1079df;
+                                                    background: #0177ae;
                                                     /*background: #0177ae;*/
                                                     border-color: transparent;
+                                                    width: 17.50%;
                                                 }
                                                 
                                                 #home .btn-danger:hover {
@@ -849,6 +861,7 @@ about section
                                                 
                                                 .nav-tabs>li>a {
                                                     display: block;
+                                                    --color: red;
                                                     color: #aac802;
                                                     font-size: 16px;
                                                     padding: 10px 20px;
@@ -932,8 +945,10 @@ contact section
                                                 }
                                                 
                                                 #contact input[type="submit"] {
-                                                    background: #00c6d7;
-                                                    border: 3px solid #00c6d7;
+                                                    background: #0177ae;
+                                                    border: 3px solid #0177ae;
+                                                    --background: #00c6d7;
+                                                    --border: 3px solid #00c6d7;
                                                     letter-spacing: 1px;
                                                     margin-top: 18px;
                                                     height: 50px;
@@ -1016,7 +1031,8 @@ media quires for mobile
                                                     .frame {
                                                         position: relative;
                                                         --background: #CBCBC8;
-                                                        background: rgb(57, 45, 163);
+                                                        background: #0177ae;
+                                                        --background: rgb(57, 45, 163);
                                                         width: 318px;
                                                         height: 390px;
                                                         --overflow: hidden;
